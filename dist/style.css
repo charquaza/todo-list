@@ -7,12 +7,19 @@ header {
     display: flex;
     justify-content: center;
 }
-div.content {
+main {
     display: flex;
 }
-aside {
+div.project-container {
     flex: 1;
 }
-main {
+div.todo-container {
     flex: 2;
+}
+
+div.create-project-form {
+    display: none;
+}
+div.create-todo-form {
+    display: none;
 }

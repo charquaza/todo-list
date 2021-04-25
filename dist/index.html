@@ -14,26 +14,37 @@
             <h1>Todos</h1>
         </header>
 
-        <div class="content">
-            <aside>
+        <main>
+            <div class="project-container">
                 <h2>Projects</h2>
     
-                <ul>
+                <ul class="project-list">
                     <li>Default Project</li>
                 </ul>
                 
-                <button>Add Project</button>
-            </aside>
+                <button class="new-project">New Project</button>
+
+                <div class="create-project-form">
+                    <input type="text" id="project-name">
+                    <button class="create-project">Create Project</button>
+                    <button class="cancel-project">Cancel</button>
+                </div>
+            </div>
     
-            <main>
+            <div class="todo-container">
                 <h2>Default Project</h2>
     
-                <ul>
+                <ul class="todo-list">
                     <li>First todo, Due: April 2021, High Priority</li>
                 </ul>
     
-                <button>Add todo</button>
-            </main>
-        </div>
+                <button class="new-todo">New todo</button>
+
+                <div class="create-todo-form">
+                    <input type="text" id="create-todo">
+                </div>
+            </div>
+        </main>
+        
     </body>
 </html>

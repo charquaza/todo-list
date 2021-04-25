@@ -4,7 +4,10 @@ function createTodo(title, description, dueDate, priority) {
 }
 
 function createProject(title) {
-    return {title, todos: []};
+    if (title) {
+        var newProject = {title, todos: []};
+        console.log(newProject);
+    }
 }
 
 var projectList = [];
