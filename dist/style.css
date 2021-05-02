@@ -23,3 +23,6 @@ div.create-project-form {
 div.create-todo-form {
     display: none;
 }
+button.new-todo {
+    display: none;
+}

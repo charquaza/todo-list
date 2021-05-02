@@ -1,16 +1,37 @@
-//todo properties: title, description, dueDate, priority, completed
-function createTodo(title, description, dueDate, priority) {
-    return {title, description, dueDate, priority};
-}
-
 function createProject(title) {
     if (title) {
-        var newProject = {title, todos: []};
-        console.log(newProject);
+        var newProject = {
+            title, 
+            todos: []
+        };
+
+        projectList.push(newProject);
+        
+        return newProject;
     }
 }
 
+function removeProject(projectIndex) {
+    delete projectList[projectIndex];
+}
+
+//todo properties: title, dueDate, priority, description, completed
+function createTodo(title, dueDate, priority, description) {
+    var newTodo = {title, dueDate, priority, description};
+
+    var currProject = projectList[currProjectIndex];
+    currProject.todos.push(newTodo);
+
+    return newTodo;
+}
+
+function removeTodo(todoIndex) {
+    var currProject = projectList[currProjectIndex];
+    delete currProject.todos[todoIndex];
+}
+
 var projectList = [];
+var currProjectIndex = 0;
 
 
-export {createTodo, createProject, projectList};
+export {createTodo, removeTodo, createProject, removeProject, projectList, currProjectIndex};
