@@ -17,6 +17,10 @@ div.todo-container {
     flex: 2;
 }
 
+.project-list li p:hover {
+    cursor: pointer;
+}
+
 div.create-project-form {
     display: none;
 }
