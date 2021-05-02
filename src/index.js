@@ -1,3 +1,3 @@
 import {updateDOM} from "./updateDOM.js";
 
-updateDOM.buildDOM();
+updateDOM.setUpListeners();

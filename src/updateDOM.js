@@ -1,7 +1,7 @@
 import {handlers} from "./eventListeners.js";
 
 var updateDOM = {
-    buildDOM(projectList) {
+    setUpListeners() {
         //set up event listeners for new project form
         var newProjectBtn = document.querySelector("button.new-project");
         newProjectBtn.addEventListener("click", updateDOM.showCreateProjectForm);
@@ -21,24 +21,6 @@ var updateDOM = {
 
         var cancelTodoBtn = document.querySelector("button.cancel-todo");
         cancelTodoBtn.addEventListener("click", updateDOM.hideCreateTodoForm);
-
-        //populate project and todo columns
-        if (projectList) {
-            var todoHeader = document.querySelector("div.todo-container > h2");
-            todoHeader.textContent = projectList[0].title;
-
-            projectList.forEach(function addProjects(project, index) {
-                updateDOM.addToProjectList(project, index);
-            });
-
-            //display todos of first project
-            projectList[0].todos.forEach(function addTodos(todo, index) {
-                updateDOM.addToTodoList(todo, index);
-            }); 
-
-            var newTodoBtn = document.querySelector("button.new-todo");
-            newTodoBtn.style.display = "block";
-        }
     },
 
     showCreateProjectForm() {

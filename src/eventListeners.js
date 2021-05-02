@@ -1,24 +1,24 @@
-import {createTodo, removeTodo, createProject, removeProject, projectList, currProjectIndex} from "./todo.js";
+import {todo} from "./todo.js";
 import {updateDOM} from "./updateDOM.js";
 
 var handlers = {
     createProjectHandler() {
         var projectTitleInput = document.querySelector("input#project-title");
-        var newProject = createProject(projectTitleInput.value); 
+        var newProject = todo.createProject(projectTitleInput.value); 
 
-        updateDOM.addToProjectList(newProject, projectList.length - 1);
+        updateDOM.addToProjectList(newProject, todo.projectList.length - 1);
         updateDOM.hideCreateProjectForm();
     },
     
     deleteProjectHandler(e) {
         var projectIndex = Number(e.target.getAttribute("data-index"));
-        removeProject(projectIndex);
+        todo.removeProject(projectIndex);
     
         var projectElem = document.querySelector(`ul.project-list > li[data-index="${projectIndex}"]`);
         updateDOM.removeFromProjectList(projectElem);
  
         //if deleting current project, remove header and todos from DOM display 
-        if (projectIndex === currProjectIndex) {
+        if (projectIndex === todo.currProjectIndex) {
             updateDOM.clearHeaderAndTodos();
         }
     },
@@ -28,10 +28,10 @@ var handlers = {
         var projectLiElem = projectTitleElem.parentElement;
         var projectIndex = Number(projectLiElem.getAttribute("data-index"));
 
-        if (projectIndex !== currProjectIndex) {
-            currProjectIndex = projectIndex;
+        if (projectIndex !== todo.currProjectIndex) {
+            todo.currProjectIndex = projectIndex;
 
-            updateDOM.switchProjects(projectList[currProjectIndex]);
+            updateDOM.switchProjects(todo.projectList[todo.currProjectIndex]);
         }
     },
 
@@ -40,20 +40,20 @@ var handlers = {
         var todoInputValues = Array.from(todoInputs, function getValue(input) {
             return input.value;
         });
-        var newTodo = createTodo(...todoInputValues); 
+        var newTodo = todo.createTodo(...todoInputValues); 
 
-        var currProject = projectList[currProjectIndex];
+        var currProject = todo.projectList[todo.currProjectIndex];
         updateDOM.addToTodoList(newTodo, currProject.todos.length - 1);
         updateDOM.hideCreateTodoForm();
     },
     
     deleteTodoHandler(e) {
         var todoIndex = Number(e.target.getAttribute("data-index"));
-        removeTodo(todoIndex);
+        todo.removeTodo(todoIndex);
     
         var todoElem = document.querySelector(`ul.todo-list > li[data-index="${todoIndex}"]`);
         updateDOM.removeFromTodoList(todoElem);
     }
-}
+};
 
 export {handlers};
