@@ -1,9 +1,7 @@
 import {handlers} from "./eventListeners.js";
-import {createTodo, removeTodo, createProject, removeProject, projectList, currProjectIndex} from "./todo.js";
 
-//have buildDOM accept projectList so that we don't need to import todo.js
 var updateDOM = {
-    buildDOM() {
+    buildDOM(projectList) {
         //set up event listeners for new project form
         var newProjectBtn = document.querySelector("button.new-project");
         newProjectBtn.addEventListener("click", updateDOM.showCreateProjectForm);
@@ -83,7 +81,6 @@ var updateDOM = {
     },
 
     switchProjects(currProject) {
-        //optional: change styling to highlight current project
         var todoHeader = document.querySelector("div.todo-container > h2");
         todoHeader.textContent = currProject.title;
 
