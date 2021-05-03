@@ -8,6 +8,9 @@ var handlers = {
 
         updateDOM.addToProjectList(newProject, todo.projectList.length - 1);
         updateDOM.hideCreateProjectForm();
+
+        var projectsJSON = JSON.stringify(todo.projectList);
+        localStorage.setItem("projects", projectsJSON);
     },
     
     deleteProjectHandler(e) {
@@ -21,6 +24,9 @@ var handlers = {
         if (projectIndex === todo.currProjectIndex) {
             updateDOM.clearHeaderAndTodos();
         }
+
+        var projectsJSON = JSON.stringify(todo.projectList);
+        localStorage.setItem("projects", projectsJSON);
     },
 
     switchProjectHandler(e) {
@@ -45,6 +51,9 @@ var handlers = {
         var currProject = todo.projectList[todo.currProjectIndex];
         updateDOM.addToTodoList(newTodo, currProject.todos.length - 1);
         updateDOM.hideCreateTodoForm();
+
+        var projectsJSON = JSON.stringify(todo.projectList);
+        localStorage.setItem("projects", projectsJSON);
     },
     
     deleteTodoHandler(e) {
@@ -53,6 +62,9 @@ var handlers = {
     
         var todoElem = document.querySelector(`ul.todo-list > li[data-index="${todoIndex}"]`);
         updateDOM.removeFromTodoList(todoElem);
+
+        var projectsJSON = JSON.stringify(todo.projectList);
+        localStorage.setItem("projects", projectsJSON);
     }
 };
 

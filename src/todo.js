@@ -2,6 +2,22 @@ var todo = {
     projectList: [],
     currProjectIndex: null,
 
+    loadProjectsFromStorage() {
+        var storedProjects = localStorage.getItem("projects");
+
+        if (storedProjects) {
+            var parsedProjects = JSON.parse(storedProjects);
+            var projectsNoNull = parsedProjects.filter(function filterNull(currValue) {
+                return currValue !== null;
+            });
+
+            if (projectsNoNull.length > 0) {
+                todo.projectList = projectsNoNull;
+                todo.currProjectIndex = 0;
+            }
+        }
+    },
+
     createProject(title) {
         if (title) {
             var newProject = {

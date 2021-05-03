@@ -23,6 +23,30 @@ var updateDOM = {
         cancelTodoBtn.addEventListener("click", updateDOM.hideCreateTodoForm);
     },
 
+    displayStoredProjects() {
+        var storedProjects = localStorage.getItem("projects");
+
+        if (storedProjects) {
+            var parsedProjects = JSON.parse(storedProjects);
+            var projectsNoNull = parsedProjects.filter(function filterNull(currValue) {
+                return currValue !== null;
+            });
+
+            if (projectsNoNull.length > 0) {
+                projectsNoNull.forEach(updateDOM.addToProjectList);
+
+                var firstProject = projectsNoNull[0];
+                firstProject.todos.forEach(updateDOM.addToTodoList);
+
+                var todoHeader = document.querySelector("div.todo-container > h2");
+                todoHeader.textContent = firstProject.title;
+
+                var newTodoBtn = document.querySelector("button.new-todo");
+                newTodoBtn.style.display = "block";
+            }
+        }
+    },
+
     showCreateProjectForm() {
         var newProjectBtn = document.querySelector("button.new-project");
         newProjectBtn.setAttribute("disabled", "");
